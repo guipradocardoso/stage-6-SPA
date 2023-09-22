@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SPA</title>
+    <script src="./js/index.js" type="module" defer></script>
   </head>
   <body>
     <nav>
@@ -14,36 +15,5 @@
     </nav>
 
     <div id="app"></div>
-    <script>
-      const routes = {
-        "/": "/pages/home.html",
-        "/about": "/pages/about.html",
-        "/contact": "/pages/contact.html",
-        404: "/pages/404.html",
-      }
-
-      function route(event) {
-        event = event || window.event
-        event.preventDefault()
-
-        window.history.pushState({}, "", event.target.href)
-
-        handle()
-      }
-
-      function handle() {
-        // desestruturando, ou seja "tirando" de dentro do objeto e passando para a const
-        const { pathname } = window.location
-        const route = routes[pathname] || routes[404]
-
-        console.log("antes do feth")
-        fetch(route)
-          .then((data) => data.text())
-          .then((html) => console.log(html))
-        console.log(route)
-      }
-
-      // a.addEventListener('click', function(event){})
-    </script>
   </body>
 </html>
